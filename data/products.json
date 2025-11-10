@@ -1,0 +1,52 @@
+[
+  {
+    "barcode": "0123456789012",
+    "description": "Water Bottle 500ml",
+    "price": 0.75
+  },
+  {
+    "barcode": "1234567890123",
+    "description": "Coca Cola 2L",
+    "price": 2.5
+  },
+  {
+    "barcode": "2345678901234",
+    "description": "Bread White Loaf",
+    "price": 1.75
+  },
+  {
+    "barcode": "3456789012345",
+    "description": "Milk 1L",
+    "price": 1.2
+  },
+  {
+    "barcode": "4567890123456",
+    "description": "Eggs Dozen Updated",
+    "price": 3
+  },
+  {
+    "barcode": "5678901234567",
+    "description": "Chicken Breast 500g",
+    "price": 5.99
+  },
+  {
+    "barcode": "6789012345678",
+    "description": "Rice 1kg",
+    "price": 2.25
+  },
+  {
+    "barcode": "7890123456789",
+    "description": "Pasta 500g",
+    "price": 1.5
+  },
+  {
+    "barcode": "8901234567890",
+    "description": "Tomatoes 1kg",
+    "price": 2.8
+  },
+  {
+    "barcode": "9012345678901",
+    "description": "Bananas 1kg",
+    "price": 1.9
+  }
+]

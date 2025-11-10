@@ -1,0 +1,245 @@
+========================================
+React Native BarCodeReader Project
+Command Execution Log
+========================================
+This file tracks all commands executed during project development.
+
+Project: BarCodeReader
+Platform: Android
+Framework: React Native
+Started: 2024
+
+========================================
+INITIAL SETUP
+========================================
+
+# Check Node.js version (required for React Native)
+node --version
+
+# Check npm version
+npm --version
+
+# Install React Native CLI globally (if not already installed)
+npm install -g react-native-cli
+
+# OR use npx (recommended - no global installation needed)
+npx react-native init BarCodeReader
+
+# Navigate to project directory
+cd BarCodeReader
+
+# Install dependencies
+npm install
+
+# For Android development, check if Android Studio and SDK are installed
+# Verify Java Development Kit (JDK) version
+java -version
+
+# Check Android SDK path (usually set in environment variables)
+echo $ANDROID_HOME
+# OR on Windows:
+echo %ANDROID_HOME%
+
+========================================
+DEVELOPMENT COMMANDS
+========================================
+
+# Start Metro bundler
+npm start
+# OR
+npx react-native start
+
+# Run on Android device/emulator
+npm run android
+# OR
+npx react-native run-android
+
+# Run on specific device
+npx react-native run-android --deviceId=<device-id>
+
+# List connected Android devices
+adb devices
+
+========================================
+BUILD COMMANDS
+========================================
+
+# Generate debug APK
+cd android
+./gradlew assembleDebug
+# OR on Windows:
+gradlew.bat assembleDebug
+
+# Generate release APK
+./gradlew assembleRelease
+# OR on Windows:
+gradlew.bat assembleRelease
+
+# Build and install release APK
+./gradlew installRelease
+# OR on Windows:
+gradlew.bat installRelease
+
+========================================
+PACKAGE INSTALLATION
+========================================
+
+# Install npm packages (add commands as you install packages)
+# Example:
+# npm install <package-name>
+
+# Install React Native packages that require native linking
+# npm install <package-name>
+# npx react-native link <package-name> (if needed)
+
+========================================
+DEBUGGING & TESTING
+========================================
+
+# Clear Metro bundler cache
+npm start -- --reset-cache
+
+# Clear Android build cache
+cd android
+./gradlew clean
+# OR on Windows:
+gradlew.bat clean
+
+# Clear watchman cache (if using watchman)
+watchman watch-del-all
+
+# Clear npm cache
+npm cache clean --force
+
+========================================
+NOTES
+========================================
+- Add commands below as you execute them during development
+- Include brief descriptions for complex commands
+- Note any issues encountered and their solutions
+
+========================================
+COMMAND HISTORY
+========================================
+
+[2024] Project Initialization
+----------------------------------------
+# Checked Node.js version
+node --version
+# Output: v22.17.0
+
+# Checked npm version
+npm --version
+# Output: 9.5.1
+
+# Attempted to initialize with deprecated command (failed - command deprecated)
+npx react-native@latest init BarCodeReader --directory .
+# Error: Command deprecated
+
+# Attempted alternative initialization (failed - directory flag issue)
+npx @react-native-community/cli@latest init BarCodeReader --directory .
+# Error: ENOENT: no such file or directory
+
+# Successfully initialized React Native project
+npx @react-native-community/cli@latest init BarCodeReader --skip-install
+# Created project in BarCodeReader subdirectory
+# React Native version: 0.82.1
+# Note: Used --skip-install to skip initial npm install
+
+# Moved all project files from subdirectory to current directory
+Move-Item -Path "BarCodeReader\*" -Destination "." -Force
+
+# Removed empty subdirectory
+Remove-Item -Path "BarCodeReader" -Recurse -Force
+
+# Installed all project dependencies
+npm install
+# Installed 835 packages
+# No vulnerabilities found
+
+[2024] POS Application Development
+----------------------------------------
+# Installed barcode scanner and vision camera dependencies
+npm install react-native-vision-camera vision-camera-code-scanner react-native-gesture-handler react-native-reanimated --legacy-peer-deps
+# Installed 10 packages
+
+# Installed web support dependencies
+npm install react-native-web react-dom --legacy-peer-deps
+# Installed 20 packages
+
+# Installed webpack and web development tools
+npm install --save-dev webpack webpack-cli webpack-dev-server html-webpack-plugin babel-loader @babel/preset-react @babel/preset-env --legacy-peer-deps
+# Installed 213 packages
+
+# Created project structure:
+# - data/products.json (Product database file)
+# - src/screens/POSScreen.tsx (Main POS screen component)
+# - src/components/CameraScanner.tsx (Camera component for native)
+# - web/index.html (Web entry HTML)
+# - web/index.js (Web entry JavaScript)
+# - webpack.config.js (Webpack configuration for web build)
+
+# Updated App.tsx to use POS screen and handle permissions
+
+# Added web script to package.json:
+# - npm run web (starts webpack dev server for Chrome testing)
+# - npm run web:build (builds production web bundle)
+
+# Fixed MODULE_NOT_FOUND error for webpack
+npm install ajv --legacy-peer-deps
+# Installed missing ajv dependency required by webpack-dev-server
+
+# Fixed React version mismatch error
+npm install react@19.1.1 react-dom@19.1.1 --legacy-peer-deps
+# Aligned react and react-dom to version 19.1.1 (they must match exactly)
+
+# Fixed HTML template issue
+# Removed incorrect <script src="./index.js"></script> from web/index.html
+# Webpack's HtmlWebpackPlugin automatically injects the correct bundle.js
+
+# Added error message display for invalid barcodes
+# - Added error state and UI component
+# - Error message displays when barcode is not found in database
+# - Error auto-hides after 5 seconds
+# - Works on both web and native platforms
+
+# Added total items count display
+# - Shows total number of items (sum of all quantities) at bottom of product list
+# - Displays between product list and total section
+# - Only visible when cart has items
+# - Styled with light green background, green label, blue value
+
+# Fixed setShowManualInput error
+# - Removed reference to undefined setShowManualInput state variable
+# - Error was occurring when adding items to cart
+
+# Added support for unknown barcodes
+# - Unknown barcodes are now added to cart without price/subtotal
+# - Displayed with "Unknown Product (barcode)" description
+# - Shows "Price not available" instead of price
+# - No subtotal displayed for unknown items
+# - Unknown items are excluded from total calculation
+# - Items count includes all items (known and unknown)
+
+# Improved user experience
+# - Removed error message when unknown barcode is entered
+# - Auto-focus barcode input field after adding items (known or unknown)
+# - Cursor returns to input field for faster barcode entry
+
+# Fixed Clear Cart button
+# - Now works on web using window.confirm() instead of Alert.alert()
+# - Clears cart, resets input field, and focuses input after clearing
+# - Works on both web and native platforms
+
+# Added Product Management feature
+# - New "Manage Products" button in header
+# - ProductManager modal component for adding/updating products
+# - Auto-detects if barcode exists (Update mode) or is new (Insert mode)
+# - Barcode field is readonly in Update mode
+# - Validates inputs (barcode, description, price)
+# - Updates products.json file
+# - For web: Downloads updated products.json file
+# - For native: Shows instructions to update file
+# - Cancel and Accept buttons
+# - Products are sorted by barcode after update
+
