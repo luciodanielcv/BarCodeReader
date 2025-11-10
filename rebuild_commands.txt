@@ -1,0 +1,101 @@
+========================================
+Complete Rebuild Commands
+========================================
+Commands to clean and rebuild the entire project from scratch
+
+========================================
+CLEAN ALL BUILD ARTIFACTS
+========================================
+
+# Remove node_modules
+Remove-Item -Path "node_modules" -Recurse -Force -ErrorAction SilentlyContinue
+
+# Remove web build output
+Remove-Item -Path "web-build" -Recurse -Force -ErrorAction SilentlyContinue
+
+# Remove Android build artifacts
+Remove-Item -Path "android\app\build" -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "android\build" -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "android\.gradle" -Recurse -Force -ErrorAction SilentlyContinue
+
+# Remove iOS build artifacts (if on Mac)
+# rm -rf ios/build
+# rm -rf ios/Pods
+# rm -rf ios/Podfile.lock
+
+# Clear npm cache
+npm cache clean --force
+
+# Clear Metro bundler cache
+Remove-Item -Path "$env:TEMP\metro-*" -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "$env:TEMP\react-*" -Recurse -Force -ErrorAction SilentlyContinue
+
+# Clear watchman cache (if installed)
+# watchman watch-del-all
+
+========================================
+REINSTALL DEPENDENCIES
+========================================
+
+# Install all dependencies from scratch
+npm install
+
+# OR with legacy peer deps (if needed)
+npm install --legacy-peer-deps
+
+========================================
+REBUILD PROJECTS
+========================================
+
+# For Web (Chrome testing):
+npm run web
+
+# For Android:
+# First, clean Android build
+cd android
+.\gradlew clean
+cd ..
+
+# Then run Android
+npm run android
+
+# For iOS (Mac only):
+# cd ios
+# pod install
+# cd ..
+# npm run ios
+
+========================================
+COMPLETE REBUILD SCRIPT (All-in-One)
+========================================
+
+# Run this complete sequence:
+Remove-Item -Path "node_modules" -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "web-build" -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "android\app\build" -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "android\build" -Recurse -Force -ErrorAction SilentlyContinue
+npm cache clean --force
+npm install --legacy-peer-deps
+
+# Then rebuild:
+# npm run web        (for web)
+# npm run android   (for Android)
+
+========================================
+VERIFY INSTALLATION
+========================================
+
+# Check Node.js version
+node --version
+
+# Check npm version
+npm --version
+
+# Check installed packages
+npm list --depth=0
+
+# Verify React Native
+npx react-native --version
+
+========================================
+
