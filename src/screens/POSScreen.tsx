@@ -266,10 +266,23 @@ const POSScreen: React.FC = () => {
           </View>
         ) : (
           cart.map((item) => (
-            <View key={item.barcode} style={styles.cartItem}>
+            <View key={item.barcode} style={[
+              styles.cartItem,
+              item.isUnknown && styles.cartItemUnknown
+            ]}>
               <View style={styles.cartItemInfo}>
-                <Text style={styles.cartItemDescription}>{item.description}</Text>
-                <Text style={styles.cartItemBarcode}>Barcode: {item.barcode}</Text>
+                <Text style={[
+                  styles.cartItemDescription,
+                  item.isUnknown && styles.cartItemDescriptionUnknown
+                ]}>
+                  {item.description}
+                </Text>
+                <Text style={[
+                  styles.cartItemBarcode,
+                  item.isUnknown && styles.cartItemBarcodeUnknown
+                ]}>
+                  Barcode: {item.barcode}
+                </Text>
                 {item.price !== undefined && (
                   <Text style={styles.cartItemPrice}>${item.price.toFixed(2)} each</Text>
                 )}
@@ -461,6 +474,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 2,
   },
+  cartItemUnknown: {
+    backgroundColor: '#FFF3E0', // Light orange background
+    borderWidth: 2,
+    borderColor: '#FF9800', // Orange border
+    borderStyle: 'dashed', // Dashed border for extra distinction
+    elevation: 3,
+    shadowColor: '#FF9800',
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+  },
   cartItemInfo: {
     flex: 1,
     marginRight: 12,
@@ -471,10 +494,18 @@ const styles = StyleSheet.create({
     color: '#212121',
     marginBottom: 4,
   },
+  cartItemDescriptionUnknown: {
+    color: '#E65100', // Dark orange text
+    fontWeight: '700',
+  },
   cartItemBarcode: {
     fontSize: 12,
     color: '#757575',
     marginBottom: 4,
+  },
+  cartItemBarcodeUnknown: {
+    color: '#F57C00', // Orange text
+    fontWeight: '600',
   },
   cartItemPrice: {
     fontSize: 14,
