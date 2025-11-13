@@ -62,6 +62,16 @@ If everything is set up correctly, you should see your new app running in the An
 
 This is one way to run your app — you can also build it directly from Android Studio or Xcode.
 
+## Opening in Android Studio
+
+To work with the Android native code in Android Studio, see the [Android Studio Setup Guide](ANDROID_STUDIO_SETUP.md) for detailed instructions.
+
+**Quick Start:**
+1. Open Android Studio
+2. Select **File** → **Open**
+3. Navigate to and select the `android` folder (not the root project folder)
+4. Android Studio will automatically sync Gradle and set up the project
+
 ## Step 3: Modify your app
 
 Now that you have successfully run the app, let's make changes!
